@@ -78,9 +78,14 @@ export const initGame = async (gameRefFirebase) => {
   }
 };
 
-export const resetGame = () => {
-  chess.reset();
-  updateGame();
+export const resetGame = async () => {
+  if (gameRef) {
+    await updateGame(null, true);
+    chess.reset();
+  } else {
+    chess.reset();
+    updateGame();
+  }
 };
 
 export const handleMove = (from, to) => {
@@ -115,7 +120,7 @@ export const move = (from, to, promotion) => {
   }
 };
 
-const updateGame = async (pendingPromotion) => {
+const updateGame = async (pendingPromotion, reset) => {
   const isGameOver = chess.game_over();
 
   if (gameRef) {
@@ -123,6 +128,9 @@ const updateGame = async (pendingPromotion) => {
       gameData: chess.fen(),
       pendingPromotion: pendingPromotion || null,
     };
+    if (reset) {
+      updatedData.status = "over";
+    }
     await gameRef.update(updateData);
   } else {
     const newGame = {

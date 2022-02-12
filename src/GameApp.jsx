@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Board from "./Board";
 import { gameSubject, initGame, resetGame } from "./Game";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { db } from "./firebase";
 
 const GameApp = () => {
@@ -11,8 +11,9 @@ const GameApp = () => {
   const [position, setPosition] = useState();
   const [initResult, setInitResult] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState("waiting");
+  const [status, setStatus] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
   const sharebleLink = window.location.href;
 
   useEffect(async () => {
@@ -28,6 +29,7 @@ const GameApp = () => {
           setResult(game.result);
           setPosition(game.position);
           setStatus(game.status);
+          setGame(game);
         });
       }
     };
@@ -58,7 +60,12 @@ const GameApp = () => {
       {isGameOver && (
         <h2 className="vertical-text">
           GAME OVER
-          <button onClick={resetGame}>
+          <button
+            onClick={async () => {
+              await resetGame();
+              navigate("/");
+            }}
+          >
             <span className="vertical-text">NEW GAME</span>
           </button>
         </h2>
