@@ -17,7 +17,7 @@ const GameApp = () => {
   const navigate = useNavigate();
   const sharebleLink = window.location.href;
 
-  useEffect(async () => {
+  useEffect(() => {
     let subscribe;
     const init = async () => {
       const res = await initGame(id !== "local" ? db.doc(`games/${id}`) : null);
