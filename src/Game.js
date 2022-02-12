@@ -1,15 +1,15 @@
 import * as Chess from "chess.js";
 import { BehaviorSubject } from "rxjs";
 
-let promotion = "rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5";
-let staleMate = "4k3/4P3/4K3/8/8/8/8/8 b - - 0 78";
-let draw = "4k3/4P3/4K3/8/8/8/8/8 b - - 0 78";
-let checkMate = "rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3";
-let threefoldRepetition =
-  "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-let insuficcientMaterial = "k7/8/n7/8/8/8/8/7K b - - 0 1";
+// let promotion = "rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5";
+// let staleMate = "4k3/4P3/4K3/8/8/8/8/8 b - - 0 78";
+// let draw = "4k3/4P3/4K3/8/8/8/8/8 b - - 0 78";
+// let checkMate = "rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3";
+// let threefoldRepetition =
+//   "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+// let insuficcientMaterial = "k7/8/n7/8/8/8/8/7K b - - 0 1";
 
-const chess = new Chess(staleMate);
+const chess = new Chess();
 
 export const gameSubject = new BehaviorSubject();
 
@@ -52,6 +52,7 @@ const updateGame = (pendingPromotion) => {
     board: chess.board(),
     pendingPromotion,
     isGameOver,
+    turn: chess.turn(),
     result: isGameOver ? getGameResult() : null,
   };
   gameSubject.next(newGame);
