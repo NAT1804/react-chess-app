@@ -12,6 +12,7 @@ const GameApp = () => {
   const [initResult, setInitResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState("");
+  const [game, setGame] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
   const sharebleLink = window.location.href;
@@ -76,7 +77,13 @@ const GameApp = () => {
         </button>
       )}
       <div className="board-container">
+        {game.member && game.member.name && (
+          <span className="tag is-link">{game.member.name}</span>
+        )}
         <Board board={board} position={position} />
+        {game.opponent && game.opponent.name && (
+          <span className="tag is-link">{game.opponent.name}</span>
+        )}
       </div>
       {result && <p className="vertical-text">{result}</p>}\
       {status === "waiting" && (

@@ -49,7 +49,7 @@ export const initGame = async (gameRefFirebase) => {
         const game = gameDoc.data();
         const { pendingPromotion, gameData, ...restOfGame } = game;
         member = game.members.find((m) => m.uid === currentUser.uid);
-        const openent = game.members.find((m) => m.uid !== currentUser.uid);
+        const opponent = game.members.find((m) => m.uid !== currentUser.uid);
 
         if (gameData) {
           chess.load(gameData);
@@ -61,7 +61,7 @@ export const initGame = async (gameRefFirebase) => {
           isGameOver,
           position: member.piece,
           member,
-          openent,
+          opponent,
           result: isGameOver ? getGameResult() : null,
           ...restOfGame,
         };
@@ -129,7 +129,7 @@ const updateGame = async (pendingPromotion, reset) => {
       pendingPromotion: pendingPromotion || null,
     };
     if (reset) {
-      updatedData.status = "over";
+      updateData.status = "over";
     }
     await gameRef.update(updateData);
   } else {
