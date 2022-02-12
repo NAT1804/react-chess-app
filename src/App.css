@@ -28,6 +28,11 @@
   height: 12.5%;
 }
 
+.promote-square {
+  width: 50%;
+  height: 50%;
+}
+
 .square-black {
   background: #b59963;
 }
@@ -53,4 +58,8 @@
 .piece {
   max-width: 70%;
   max-height: 70%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
