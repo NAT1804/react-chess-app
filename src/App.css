@@ -3,12 +3,18 @@
   padding: 0;
 }
 
-.container {
+.app-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgb(34, 34, 34);
+}
+
+.user-form {
+  margin-top: 30px !important;
+  max-width: 800px;
+  margin: auto;
 }
 
 .board-container {

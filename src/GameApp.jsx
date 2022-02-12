@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import Board from "./Board";
 import { gameSubject, initGame, resetGame } from "./Game";
 
-function App() {
+const GameApp = () => {
   const [board, setBoard] = useState([]);
   const [isGameOver, setIsGameOver] = useState();
   const [result, setResult] = useState();
@@ -21,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="app-container">
       {isGameOver && (
         <h2 className="vertical-text">
           GAME OVER
@@ -41,6 +40,6 @@ function App() {
       {result && <p className="vertical-text">{result}</p>}
     </div>
   );
-}
+};
 
-export default App;
+export default GameApp;
