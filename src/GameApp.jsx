@@ -11,7 +11,9 @@ const GameApp = () => {
   const [position, setPosition] = useState();
   const [initResult, setInitResult] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState("waiting");
   const { id } = useParams();
+  const sharebleLink = window.location.href;
 
   useEffect(async () => {
     let subscribe;
@@ -25,6 +27,7 @@ const GameApp = () => {
           setIsGameOver(game.isGameOver);
           setResult(game.result);
           setPosition(game.position);
+          setStatus(game.status);
         });
       }
     };
@@ -33,6 +36,10 @@ const GameApp = () => {
 
     return () => subscribe && subscribe.unsubscribe();
   }, [id]);
+
+  const copyToClipboard = async () => {
+    await navigator.clipboard.writeText(sharebleLink);
+  };
 
   if (loading) {
     return "Loading ...";
@@ -64,7 +71,31 @@ const GameApp = () => {
       <div className="board-container">
         <Board board={board} position={position} />
       </div>
-      {result && <p className="vertical-text">{result}</p>}
+      {result && <p className="vertical-text">{result}</p>}\
+      {status === "waiting" && (
+        <div className="notification is-link share-game">
+          <strong>Share this game to continue</strong>
+          <br />
+          <br />
+          <div className="field has-addons">
+            <div className="control is-expanded">
+              <input
+                type="text"
+                name=""
+                id=""
+                className="input"
+                readOnly
+                value={sharebleLink}
+              />
+            </div>
+            <div className="control">
+              <button className="button is-info" onClick={copyToClipboard}>
+                Copy
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

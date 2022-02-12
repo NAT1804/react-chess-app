@@ -27,6 +27,13 @@
   align-items: center;
 }
 
+.share-game {
+  position: absolute;
+  width: 500px;
+  bottom: 0;
+  left: 0;
+}
+
 .board-container {
   width: 600px;
   height: 600px;
