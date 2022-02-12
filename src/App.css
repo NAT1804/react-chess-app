@@ -17,6 +17,16 @@
   margin: auto;
 }
 
+.home {
+  min-height: 100vh;
+}
+
+.home-columns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .board-container {
   width: 600px;
   height: 600px;
