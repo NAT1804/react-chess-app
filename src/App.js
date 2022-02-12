@@ -30,6 +30,11 @@ function App() {
           </button>
         </h2>
       )}
+      {!isGameOver && (
+        <button className="btn-new-game" onClick={resetGame}>
+          <span className="vertical-text">RESET GAME</span>
+        </button>
+      )}
       <div className="board-container">
         <Board board={board} turn={turn} />
       </div>

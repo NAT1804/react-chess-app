@@ -79,3 +79,12 @@
   border: 2px solid white;
   border-radius: 10px;
 }
+
+.btn-new-game {
+  margin-top: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  background: rgb(63, 63, 63);
+  border: 2px solid white;
+  border-radius: 10px;
+}
