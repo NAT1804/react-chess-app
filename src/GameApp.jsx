@@ -77,12 +77,12 @@ const GameApp = () => {
         </button>
       )}
       <div className="board-container">
-        {game.member && game.member.name && (
-          <span className="tag is-link">{game.member.name}</span>
-        )}
-        <Board board={board} position={position} />
         {game.opponent && game.opponent.name && (
           <span className="tag is-link">{game.opponent.name}</span>
+        )}
+        <Board board={board} position={position} />
+        {game.member && game.member.name && (
+          <span className="tag is-link">{game.member.name}</span>
         )}
       </div>
       {result && <p className="vertical-text">{result}</p>}\

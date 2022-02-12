@@ -11,14 +11,15 @@ const Home = () => {
     { label: "White piece", value: "w" },
     { label: "Random", value: "r" },
   ];
-  const handlePlyOnline = () => {
+  const handlePlayLocal = () => {};
+  const handlePlayOnline = () => {
     setShowModal(true);
   };
   const startOnlineGame = async (startingPiece) => {
     const member = {
       uid: currentUser.uid,
       piece:
-        startingPiece === "random"
+        startingPiece === "r"
           ? ["b", "w"][Math.round(Math.random())]
           : startingPiece,
       name: localStorage.getItem("userName"),
@@ -36,10 +37,12 @@ const Home = () => {
     <>
       <div className="columns home">
         <div className="column has-background-primary home-columns">
-          <button className="button is-link">Play Locally</button>
+          <button className="button is-link" onClick={handlePlayLocal}>
+            Play Locally
+          </button>
         </div>
         <div className="column has-background-link home-columns">
-          <button className="button is-primary" onClick={handlePlyOnline}>
+          <button className="button is-primary" onClick={handlePlayOnline}>
             Play online
           </button>
         </div>
